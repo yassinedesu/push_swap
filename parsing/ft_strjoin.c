@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_all.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yael-kha <yael-kha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/10 23:18:57 by yael-kha          #+#    #+#             */
-/*   Updated: 2026/02/11 17:50:48 by yael-kha         ###   ########.fr       */
+/*   Created: 2025/11/11 17:08:50 by yael-kha          #+#    #+#             */
+/*   Updated: 2026/02/10 14:33:24 by yael-kha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	free_all(char **s)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
+	size_t	j;
+	char	*str;
 
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
-	while (s[i])
+	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
+		return (NULL);
+	while (s1[i])
 	{
-		free(s[i]);
+		str[i] = s1[i];
 		i++;
 	}
-	free(s);
-	return ;
+	j = 0;
+	while (s2[j])
+	{
+		str[i] = s2[j];
+		i++;
+		j++;
+	}
+	return (str[i] = '\0', str);
 }

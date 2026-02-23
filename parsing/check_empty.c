@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   check_empty.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yael-kha <yael-kha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:09:14 by yael-kha          #+#    #+#             */
-/*   Updated: 2026/02/05 22:45:33 by yael-kha         ###   ########.fr       */
+/*   Created: 2026/02/19 15:56:13 by yael-kha          #+#    #+#             */
+/*   Updated: 2026/02/19 16:03:09 by yael-kha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-size_t	ft_strlen(const char *s)
+int	check_empty(char **ptr)
 {
-	size_t	i;
+	int	i;
+	int	j;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
+	while (ptr[i])
+	{
+		if (ptr[i] == NULL)
+			return (-1);
+		j = 0;
+		while (ptr[i][j] == ' ')
+			j++;
+		if (ptr[i][j] == '\0')
+			return (-1);
 		i++;
-	return (i);
+	}
+	return (0);
 }

@@ -10,4 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
+
+void	swap(t_list *stack)
+{
+	t_list	*tmp;
+
+	if (!stack || !stack->next)
+		return ;
+	tmp = stack->next;
+	stack->next = tmp->next;
+	tmp->next = stack;
+	stack = tmp;
+}
+
+void	rotate(t_list *stack)
+{
+	t_list	*tmp;
+	t_list	*head;
+
+	if (!stack || !stack->next)
+		return ;
+	head = stack;
+	tmp = stack->next;
+	while (stack)
+		stack = stack->next;
+	stack->next = head;
+	head->next = NULL;
+	tmp->previous = NULL;
+}

@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_doubles.c                                    :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yael-kha <yael-kha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/15 00:29:02 by yael-kha          #+#    #+#             */
-/*   Updated: 2026/02/15 02:01:55 by yael-kha         ###   ########.fr       */
+/*   Created: 2025/11/11 17:06:30 by yael-kha          #+#    #+#             */
+/*   Updated: 2026/02/05 22:43:11 by yael-kha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int	check_doubles(long *ptr)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	s_len;
+	char	*ss;
 
 	i = 0;
-	while (ptr[i] != EOR)
+	s_len = ft_strlen(s);
+	if (s_len <= start)
+		return (ft_strdup(""));
+	if (s_len - start < len)
+		ss = malloc((s_len - start) + 1);
+	else
+		ss = malloc(len + 1);
+	if (!ss)
+		return (NULL);
+	while (i < len && s[start + i])
 	{
-		j = i + 1;
-		while (ptr[j] != EOR)
-		{
-			if (ptr[i] == ptr[j])
-				return (1);
-			j++;
-		}
+		ss[i] = (char)s[start + i];
 		i++;
 	}
-	return (0);
+	ss[i] = '\0';
+	return (ss);
 }

@@ -1,51 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   indexing.c                                         :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yael-kha <yael-kha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/15 19:07:57 by yael-kha          #+#    #+#             */
-/*   Updated: 2026/02/15 23:12:17 by yael-kha         ###   ########.fr       */
+/*   Created: 2025/11/11 17:09:42 by yael-kha          #+#    #+#             */
+/*   Updated: 2026/02/05 22:46:08 by yael-kha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static int	int_count(long *p)
+char	*ft_strstr(const char *big, const char *little)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (p[i] != EOR)
-		i++;
-	return (i);
-}
-
-int	*indexing(long	*p)
-{
-	int	i;
-	int	j;
-	int	count;
-	int	*index;
-
-	i = 0;
-	index = malloc(sizeof(int) * (int_count(p) + 1));
-	if (!index)
-		return (NULL);
-	while (p[i] != EOR)
+	if (ft_strlen(little) == 0)
+		return ((char *)big);
+	while (big[i])
 	{
 		j = 0;
-		count = 0;
-		while (p[j] != EOR)
-		{
-			if (p[i] > p[j])
-				count++;
+		while (big[i + j] && big[i + j] == little[j])
 			j++;
-		}
-		index[i] = count;
+		if (little[j] == '\0')
+			return ((char *)&big[i]);
 		i++;
 	}
-	index[i] = -1;
-	return (index);
+	return (NULL);
 }

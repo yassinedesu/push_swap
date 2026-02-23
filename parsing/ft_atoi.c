@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_empty.c                                      :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yael-kha <yael-kha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/19 15:56:13 by yael-kha          #+#    #+#             */
-/*   Updated: 2026/02/19 16:03:09 by yael-kha         ###   ########.fr       */
+/*   Created: 2025/11/10 22:39:24 by yael-kha          #+#    #+#             */
+/*   Updated: 2026/02/10 23:57:16 by yael-kha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int	check_empty(char **ptr)
+long	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		sign;
+	long	to_int;
 
 	i = 0;
-	while (ptr[i])
+	sign = 1;
+	to_int = 0;
+	if (!nptr)
+		return (0);
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+		i++;
+	if (nptr[i] == '+')
+		i++;
+	else if (nptr[i] == '-')
 	{
-		if (ptr[i] == NULL)
-			return (-1);
-		j = 0;
-		while (ptr[i][j] == ' ')
-			j++;
-		if (ptr[i][j] == '\0')
-			return (-1);
+		sign *= -1;
 		i++;
 	}
-	return (0);
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		to_int = (to_int * 10) + (nptr[i] - '0');
+		i++;
+	}
+	return (to_int * sign);
 }

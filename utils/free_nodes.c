@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	free_nodes(t_list **head)
 {
-    t_list	*current;
-    t_list	*temp;
+	t_list	*current;
+	t_list	*temp;
 
-    current = *head;
-    while (current)
-    {
-        temp = current;
-        current = current->next;
-        free(temp);
-    }
-    *head = NULL;
+	current = *head;
+	while (current)
+	{
+		temp = current;
+		current = current->next;
+		free(temp);
+	}
+	*head = NULL;
 }

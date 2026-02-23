@@ -1,40 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   indexing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yael-kha <yael-kha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:08:50 by yael-kha          #+#    #+#             */
-/*   Updated: 2026/02/10 14:33:24 by yael-kha         ###   ########.fr       */
+/*   Created: 2026/02/15 19:07:57 by yael-kha          #+#    #+#             */
+/*   Updated: 2026/02/15 23:12:17 by yael-kha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static int	int_count(long *p)
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
+	int	i;
 
-	if (!s1 || !s2)
-		return (NULL);
 	i = 0;
-	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!str)
+	while (p[i] != EOR)
+		i++;
+	return (i);
+}
+
+int	*indexing(long *p)
+{
+	int	i;
+	int	j;
+	int	count;
+	int	*index;
+
+	i = 0;
+	index = malloc(sizeof(int) * (int_count(p) + 1));
+	if (!index)
 		return (NULL);
-	while (s1[i])
+	while (p[i] != EOR)
 	{
-		str[i] = s1[i];
+		j = 0;
+		count = 0;
+		while (p[j] != EOR)
+		{
+			if (p[i] > p[j])
+				count++;
+			j++;
+		}
+		index[i] = count;
 		i++;
 	}
-	j = 0;
-	while (s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	return (str[i] = '\0', str);
+	index[i] = -1;
+	return (index);
 }

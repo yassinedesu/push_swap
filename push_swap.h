@@ -45,6 +45,8 @@ char				*join_args(char **args);
 void				free_all(char **s);
 void				free_nodes(t_list **head);
 void				error_checker(void);
+void				swap(t_list *stack);
+void				rotate(t_list *stack);
 size_t				ft_strlen(const char *s);
 size_t				count_word(char *s, char c);
 t_list				*create_node(int content, int id);
