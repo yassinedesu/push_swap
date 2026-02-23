@@ -46,11 +46,10 @@ t_list	*link_nodes(t_list **head, t_list *node)
 
 t_list	*stack(long *p)
 {
+	int	i;
+	int	*id;
 	t_list	*head;
 	t_list	*tmp;
-	t_list	*tempo;
-	int	*id;
-	int	i;
 
 	i = 0;
 	head = NULL;
@@ -58,11 +57,15 @@ t_list	*stack(long *p)
 	if (!id)
 		return (NULL);
 	head = create_node(p[i], id[i]);
+	if (!head)
+		return (free(id), NULL);
 	i++;
 	while (p[i] != EOR)
 	{
 		tmp = create_node(p[i], id[i]);
-		tempo = link_nodes(&head, tmp);
+		if (!tmp)
+			return (free(id), free_nodes(&head), NULL);
+		link_nodes(&head, tmp);
 		i++;
 	}
 	free(id);

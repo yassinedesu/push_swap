@@ -82,7 +82,7 @@ long	*atoi_done(char **splited)
 		return (NULL);
 	while (i < count)
 	{
-		if (splited[i] == "")
+		if (splited[i][0] == '\0')
 			return (NULL);
 		ptr[i] = to_int(splited[i]);
 		if (ptr[i] > MAX || ptr[i] < MIN || ptr[i] == EOR)

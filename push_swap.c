@@ -11,3 +11,30 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int    main(int argc, char **argv)
+{
+    char	*joined_args;
+    long	*p;
+    t_list	*stack_a;
+    t_list	*stack_b;
+
+    if (argc < 2)
+        return (0);
+    joined_args = join_args(argv);
+    if (!joined_args)
+        return (write(2, "Error\n", 6), 1);
+    p = valide(joined_args);
+    free(joined_args);
+    if (!p)
+        return (write(2, "Error\n", 6), 1);
+    stack_a = stack(p);
+    free(p);
+    if (!stack_a)
+        return (write(2, "Error\n", 6), 1);
+    stack_b = NULL;
+    sort(&stack_a, &stack_b);
+    free_nodes(&stack_a);
+    free_nodes(&stack_b);
+    return (0);
+}

@@ -43,11 +43,9 @@ char	*join_args(char **args)
 
 long	*valide(char *ptr)
 {
-	int		i;
 	char	**splited;
 	long	*p;
 
-	i = 0;
 	splited = ft_split(ptr, ' ');
 	if (!splited)
 		return (NULL);
