@@ -26,7 +26,7 @@ static void	reverse_rotate(t_list **stack)
 	head->previous = current->next;
 	current->next->previous = NULL;
 	current->next->next = head;
-	*stack = current;
+	*stack = current->next;
 	current->next = NULL;
 }
 
