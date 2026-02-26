@@ -14,7 +14,9 @@
 
 t_list	*create_node(int content, int id)
 {
-	t_list	*new_node = malloc(sizeof(t_list));
+	t_list	*new_node;
+
+	new_node = malloc(sizeof(t_list));
 	if (!new_node)
 		return (NULL);
 	new_node->value = content;
@@ -46,8 +48,8 @@ t_list	*link_nodes(t_list **head, t_list *node)
 
 t_list	*stack(long *p)
 {
-	int	i;
-	int	*id;
+	int		i;
+	int		*id;
 	t_list	*head;
 	t_list	*tmp;
 

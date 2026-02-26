@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules.c                                            :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yael-kha <yael-kha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,30 +12,42 @@
 
 #include "../push_swap.h"
 
-void	swap(t_list *stack)
+static void	swap(t_list **stack)
 {
-	t_list	*tmp;
+	t_list	*first;
+	t_list	*second;
 
-	if (!stack || !stack->next)
+	if (!stack || !(*stack) || !(*stack)->next)
 		return ;
-	tmp = stack->next;
-	stack->next = tmp->next;
-	tmp->next = stack;
-	stack = tmp;
+	first = *stack;
+	second = first->next;
+	first->next = second->next;
+	first->previous = second;
+	if (first->next)
+		first->next->previous = first;
+	second->next = first;
+	second->previous = NULL;
+	*stack = second;
 }
 
-void	rotate(t_list *stack)
+void	sa(t_list **a)
 {
-	t_list	*tmp;
-	t_list	*head;
+	swap(a);
+	write(1, "sa\n", 3);
+	return ;
+}
 
-	if (!stack || !stack->next)
-		return ;
-	head = stack;
-	tmp = stack->next;
-	while (stack)
-		stack = stack->next;
-	stack->next = head;
-	head->next = NULL;
-	tmp->previous = NULL;
+void	sb(t_list **b)
+{
+	swap(b);
+	write(1, "sb\n", 3);
+	return ;
+}
+
+void	ss(t_list **a, t_list **b)
+{
+	swap(a);
+	swap(b);
+	write(1, "ss\n", 3);
+	return ;
 }
